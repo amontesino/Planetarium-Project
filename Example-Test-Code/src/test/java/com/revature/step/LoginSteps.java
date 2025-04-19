@@ -1,25 +1,38 @@
 package com.revature.step;
 
+import static com.revature.TestRunner.*;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class LoginSteps {
-    
-    @Given("the user is on the login page")
-    public void the_user_is_on_the_login_page() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+    @When("the user provides username {string} while logging in")
+    public void the_user_provides_username_while_logging_in(String username) {
+        loginPage.enterUsername(username);
     }
-    @When("the user provides an existing username")
-    public void the_user_provides_an_existing_username() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+    @And("the user provides password {string} while logging in")
+    public void the_user_provides_password_while_logging_in(String password) {
+        loginPage.enterPassword(password);
     }
-    @When("the user provides an existing password")
-    public void the_user_provides_an_existing_password() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+//    @And("the username and password match an existing record")
+//    public void the_username_and_password_match_an_existing_record() {
+//
+//    }
+
+    @And("the user should be redirected to the Planetarium page")
+    public void the_user_should_be_redirected_to_the_planetarium_page() {
+
+    }
+
+    @When("the user clicks the login button")
+    public void the_user_clicks_the_login_button() {
+        loginPage.clickLoginButton();
+    }
+
+    @And("the user should remain on the login page")
+    public void the_user_should_remain_on_the_login_page() {
+
     }
 }
