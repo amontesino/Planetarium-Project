@@ -3,6 +3,7 @@ package com.revature.step;
 import static com.revature.TestRunner.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 
 public class LoginSteps {
 
@@ -23,7 +24,7 @@ public class LoginSteps {
 
     @And("the user should be redirected to the Planetarium page")
     public void the_user_should_be_redirected_to_the_planetarium_page() {
-
+        Assert.assertEquals("Home", driver.getTitle());
     }
 
     @When("the user clicks the login button")
@@ -33,6 +34,6 @@ public class LoginSteps {
 
     @And("the user should remain on the login page")
     public void the_user_should_remain_on_the_login_page() {
-
+        loginPage.goToLoginPage();
     }
 }

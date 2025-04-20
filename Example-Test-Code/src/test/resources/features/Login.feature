@@ -13,7 +13,7 @@ Feature: User Login
     And    the user should be redirected to the Planetarium page
 
   # Sad Path Scenario
-  Scenario Outline: Invalid credential data should not allow for registering with the Planetarium
+  Scenario Outline: Invalid credential data should not allow for logging into the Planetarium
     When   the user provides username "<username>" while logging in
     And    the user provides password "<password>" while logging in
     When   the user clicks the login button
