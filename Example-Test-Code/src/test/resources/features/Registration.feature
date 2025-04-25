@@ -12,6 +12,7 @@ Feature: User Registration
     # Note the syntax below, assuming you have a plugin for intellisense
     # the section wrapped in quotes tells Cucumber you want to inject the data
     # into the step code that is executed
+    Then   the user clicks the register button
     Then   an alert should appear saying "Account created successfully"
     And    the user should be redirected to the login page
 

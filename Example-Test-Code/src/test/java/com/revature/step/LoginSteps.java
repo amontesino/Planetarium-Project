@@ -2,8 +2,12 @@ package com.revature.step;
 
 import static com.revature.TestRunner.*;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
+
+import java.time.Duration;
 
 public class LoginSteps {
 
@@ -17,13 +21,9 @@ public class LoginSteps {
         loginPage.enterPassword(password);
     }
 
-//    @And("the username and password match an existing record")
-//    public void the_username_and_password_match_an_existing_record() {
-//
-//    }
-
-    @And("the user should be redirected to the Planetarium page")
+    @Then("the user should be redirected to the Planetarium page")
     public void the_user_should_be_redirected_to_the_planetarium_page() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         Assert.assertEquals("Home", driver.getTitle());
     }
 

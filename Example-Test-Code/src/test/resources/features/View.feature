@@ -1,15 +1,12 @@
 Feature: Viewing Planets/Moons
 
-  # any starting steps shared between ALL scenarios/scenario outlines can be declared in a Background
-  Background:
-    Given  the user is logged in
-
   # Happy Path Scenario
   Scenario: Planets/moons should be displayed when the user logs in
-    When    the user is on the planetarium page
-    Then    their planets/moons should be displayed in the UI
-
-  # Sad Path Scenario
-  Scenario: Planets/moons will not display when the user logs in
-    When    the user is on the planetarium page
-    Then    their planets/moons will not display
+    Given   the user is on the login page
+    When    the user provides username "Batman" while logging in
+    And     the user provides password "Iamthenight1939" while logging in
+    And     the user clicks the login button
+    Then    the user should be redirected to the Planetarium page
+    And     their planets/moons should be displayed in the UI
+    And     the creation inputs should be visible
+    And     the greeting should be visible

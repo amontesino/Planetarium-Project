@@ -8,9 +8,8 @@ Feature: User Login
   Scenario: Valid credential data should allow for logging into the Planetarium
     When   the user provides username "Batman" while logging in
     And    the user provides password "Iamthenight1939" while logging in
-#    And    the username and password match an existing record
-    Then   an alert should appear saying "Logged in successfully"
-    And    the user should be redirected to the Planetarium page
+    When   the user clicks the login button
+    Then   the user should be redirected to the Planetarium page
 
   # Sad Path Scenario
   Scenario Outline: Invalid credential data should not allow for logging into the Planetarium
@@ -22,14 +21,14 @@ Feature: User Login
 
     Examples:
       |username|password|message|
-      |Batman  |Bobb1   |Invalid password    |
-      |bobb    |Bobb1   |Account not found   |
-      |Robin!%?|Bobb1   |Account not found   |
-      |3obin   |Bobb1   |Account not found   |
-      |Robin   |Bob3    |Account not found   |
-      |Robin   |bobby   |Account not found   |
-      |Robin   |Bobby   |Account not found   |
-      |Robin   |bobb3   |Account not found   |
-      |Robin   |BOBB3   |Account not found   |
-      |Robin   |Bobb3!? |Account not found   |
-      |Robin   |3obbY   |Account not found   |
+      |Batman  |Bobb1   |Invalid credentials    |
+      |bobb    |Bobb1   |Invalid credentials    |
+      |Robin!%?|Bobb1   |Invalid credentials    |
+      |3obin   |Bobb1   |Invalid credentials    |
+      |Robin   |Bob3    |Invalid credentials    |
+      |Robin   |bobby   |Invalid credentials    |
+      |Robin   |Bobby   |Invalid credentials    |
+      |Robin   |bobb3   |Invalid credentials    |
+      |Robin   |BOBB3   |Invalid credentials    |
+      |Robin   |Bobb3!? |Invalid credentials    |
+      |Robin   |3obbY   |Invalid credentials    |

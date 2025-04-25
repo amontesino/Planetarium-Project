@@ -5,10 +5,20 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+import java.util.List;
 
 public class AddSteps {
     @Given("the user is logged in")
     public void theUserIsLoggedIn() {
+        loginPage.goToLoginPage();
         loginPage.enterUsername("Batman");
         loginPage.enterPassword("Iamthenight1939");
         loginPage.clickLoginButton();
@@ -16,9 +26,10 @@ public class AddSteps {
 
     @When("the user provides {string} in the name field")
     public void theUserProvidesInTheNameField(String name) {
-        if (planetariumPage.checkType().equals("planet")) {
+        String type = planetariumPage.checkType();
+        if (type.equals("planet")) {
             planetariumPage.inputPlanetName(name);
-        } else if (planetariumPage.checkType().equals("moon")) {
+        } else if (type.equals("moon")) {
             planetariumPage.inputMoonName(name);
         }
     }
@@ -32,9 +43,12 @@ public class AddSteps {
         }
     }
 
-    @Then("a planet should appear in the list")
-    public void aPlanetShouldAppearInTheList() {
-
+    @Then("a planet\\/moon should appear in the list")
+    public void aPlanetOrMoonShouldAppearInTheList() {
+        WebDriverWait explicitWait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        explicitWait.until(ExpectedConditions.numberOfElementsToBeMoreThan(By.tagName("tr"), 1));
+        List<WebElement> rows = driver.findElements(By.tagName("tr"));
+        Assert.assertTrue(rows.size() > 3);
     }
 
     @When("the user chooses {string} between moon and planet")
@@ -50,6 +64,13 @@ public class AddSteps {
     }
 
     @Then("a planet\\/moon will not appear in the list")
-    public void aPlanetMoonWillNotAppearInTheList() {
+    public void aPlanetOrMoonWillNotAppearInTheList() {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
+        Assert.assertThrows(NoSuchElementException.class, () -> driver.findElement(By.xpath("//tr[4]")).isDisplayed());
+    }
+
+    @And("the user clicks the submit button")
+    public void theUserClicksTheSubmitButton() {
+        planetariumPage.submitPlanetOrMoonRequest();
     }
 }

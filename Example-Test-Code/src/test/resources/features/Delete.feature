@@ -5,13 +5,25 @@ Feature: Delete Planets/Moons
     Given  the user is logged in
 
   # Happy Path Scenario
-  Scenario: Existing planet/moon names should be deleted and removed from the UI when requested
-    When   the user provides "Earth" in the deletion field
+  Scenario Outline: Existing planet/moon names should be deleted and removed from the UI when requested
+    When   the user chooses "<type>" between moon and planet
+    And    the user provides "<name>" in the deletion field
     And    the user clicks the delete button
     Then   the existing planet/moon should be deleted from the planetarium
 
+  Examples:
+    |type  |name |
+    |moon  |Luna |
+    |planet|Earth|
+
   # Sad Path Scenario
-  Scenario: Non-existing planet/moon names should prompt the user when deletion is requested
-    When   the user provides "Saturn" in the deletion field
+  Scenario Outline: Non-existing planet/moon names should prompt the user when deletion is requested
+    When   the user chooses "<type>" between moon and planet
+    And    the user provides "<name>" in the deletion field
     And    the user clicks the delete button
-    Then   an alert should appear saying "Celestial body does not exist!"
+    Then   an alert should appear saying "<message>"
+
+  Examples:
+    |type   |name  |message            |
+    |moon   |Titan |Invalid moon name  |
+    |planet |Saturn|Invalid planet name|
