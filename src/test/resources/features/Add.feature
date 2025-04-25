@@ -1,6 +1,5 @@
 Feature: Adding Planets/Moons
 
-  # any starting steps shared between ALL scenarios/scenario outlines can be declared in a Background
   Background:
     Given  the user is logged in
 

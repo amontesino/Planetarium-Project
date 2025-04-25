@@ -10,9 +10,6 @@ import org.openqa.selenium.Alert;
 
 public class RegistrationSteps {
 
-    /*
-        ########## Shared Steps ##########
-     */
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page() {
         loginPage.goToLoginPage();
@@ -36,11 +33,6 @@ public class RegistrationSteps {
         registrationPage.clickRegisterButton();
     }
 
-    /*
-        Note the step syntax below does not match 100% with what we have written in the Feature file.
-        Cucumber is able to pass data to our glue methods at runtime, which can simplify the steps we
-        write and reduce the number of overall associated methods we need to implement
-     */
     @Then("an alert should appear saying {string}")
     public void an_alert_should_appear_saying(String expectedMessage) {
         registrationPage.waitForAlert();
@@ -50,19 +42,10 @@ public class RegistrationSteps {
         Assert.assertEquals(expectedMessage, actualMessage);
     }
 
-    /*
-        ########## Happy Path Steps ##########
-     */
-
     @And("the user should be redirected to the login page")
     public void the_user_should_be_redirected_to_the_login_page() {
         Assert.assertEquals(loginPage.getTitle(), driver.getTitle());
     }
-
-    /*
-        ########## Sad Path Steps ##########
-     */
-
 
     @Then("the user should remain on the register page")
     public void the_user_should_remain_on_the_register_page() {

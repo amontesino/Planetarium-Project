@@ -1,6 +1,5 @@
 Feature: User Registration
 
-  # any starting steps shared between ALL scenarios/scenario outlines can be declared in a Background
   Background:
     Given  the user is on the login page
     When   the user clicks the register link
@@ -9,9 +8,6 @@ Feature: User Registration
   Scenario: Valid credential data should allow for registering with the Planetarium
     When   the user provides username "Robin" while registering
     And    the user provides password "Bobb1" while registering
-    # Note the syntax below, assuming you have a plugin for intellisense
-    # the section wrapped in quotes tells Cucumber you want to inject the data
-    # into the step code that is executed
     Then   the user clicks the register button
     Then   an alert should appear saying "Account created successfully"
     And    the user should be redirected to the login page
@@ -23,9 +19,7 @@ Feature: User Registration
     When   the user clicks the register button
     Then   an alert should appear saying "<message>"
     And the user should remain on the register page
-
-  # Examples is used to create a data table that Cucumber will look to for test data during runtime
-  # For each row of data, Cucumber will execute the associated Scenario Outline
+    
   Examples:
     |username|password|message|
     |Batman  |Bobb1   |Invalid username    |
