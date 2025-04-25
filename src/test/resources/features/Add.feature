@@ -16,12 +16,12 @@ Feature: Adding Planets/Moons
   Examples:
 
     |type   |name                           |file      |moon-id|
-    |planet |Venus                          |Venus.png |       |
-    |planet |Planetnamewith30charactersssss |          |       |
-    |planet |A                              |          |       |
     |moon   |Zoozve                         |Zoozve.png|1      |
     |moon   |B                              |          |1      |
     |moon   |Moonnamewith30charactersssssss |          |1      |
+    |planet |Venus                          |Venus.png |       |
+    |planet |Planetnamewith30charactersssss |          |       |
+    |planet |A                              |          |       |
 
   # Sad Path Scenario
   Scenario Outline: Invalid user input data should not be added to the planetarium
